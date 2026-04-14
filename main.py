@@ -1,16 +1,32 @@
-from menu import main_menu
-from time import sleep
+from menu import Menu, clear
 
 def main():
+    # Create menu lists
+    MAIN = ("Login", "Practice Mode", "Perfomance Analysis", "Quit")
+    LOGIN = ("Sign In", "New Account", "back to Main Menu")
+    PRACTICE = ("Multiplication", "back to Main Menu")
+    PERFORMANCE = ("Tables", "Graphs", "back to Main Menu")
+
+    # Create menus
+    main_menu = Menu("Main Menu", MAIN)
+    login_menu = Menu("Login Menu", LOGIN)
+    practice_menu = Menu("Practice Menu", PRACTICE)
+    performance_menu = Menu("Performance Menu", PERFORMANCE)
+
+    # Menu logic - program flow control
     while True:
-        response = main_menu()
-        match(response):
+        match(main_menu.select()):
             case 1:
-                print("Why, hello there!")
+                login_menu.select()
+            case 2:
+                practice_menu.select()
+            case 3: 
+                performance_menu.select()
+            case 4:
+                clear()
+                print("Come back soon, Goodbye!\n")
                 break
-            case _:
-                print("\nThat is not an option.")
-                sleep(3)
+    print('-' * 50)
             
         
 if __name__ == "__main__":
