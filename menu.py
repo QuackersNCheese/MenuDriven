@@ -26,10 +26,11 @@ class Menu:
         print('-' * 24) #---------------------------------------------------------
 
     # *** Display Menu and return user selected menu number
-    def select(self):      
+    def select(self, user = ""):      
         while True:
             clear()
             self.banner()
+            print("User:", user)
             try:
                 answer = int(input("Please select a number: "))
                 if answer < 1 or answer > len(self.option_list):
