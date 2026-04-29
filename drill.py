@@ -13,7 +13,7 @@ def starting_interview():
     range_max = 0
     
     while True:
-        clear()
+        #clear()
         print("Just a few questions before we start... ")
         try:
             quantity = int(input("How many problems would you like in your drill? "))

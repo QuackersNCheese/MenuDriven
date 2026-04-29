@@ -1,15 +1,16 @@
 from menu import Menu, clear, buff
 from login import Account
+from drill import starting_interview, generate_test, drill
 
 def main():
     # Default user account
     this_account = Account()
-    username, userID = this_account.get_user()
+    this_account.set_user()
 
     # Create menu lists
     MAIN = ["Change Login", "Practice Mode", "Perfomance Analysis", "Quit"]
     LOGIN = ("Sign In", "New Account", "back to Main Menu")
-    PRACTICE = ("Addition", "Subtraction", "Multiplication", "Integer Division", "back to Main Menu")
+    PRACTICE = ("Arithmetic", "Modulus", "Binary", "Unit Circle", "back to Main Menu")
     PERFORMANCE = ("Tables", "Graphs", "back to Main Menu")
 
     # Create menus
@@ -18,42 +19,33 @@ def main():
     practice_menu = Menu("Practice Menu", PRACTICE)
     performance_menu = Menu("Performance Menu", PERFORMANCE)
 
-
     # Menu logic - program flow control
     while True:
         match(main_menu.select(this_account.get_username())):
             case 1:
-                while True:
-                    match(login_menu.select(this_account.get_username())):
-                        case 1:
-                            buf = buff("Sign-in")
-                            print('-' * buf + ' ' + "Sign-in" + ' ' + '-' * buf) #-----------------
-                            input("Press Enter to continue\n")
-                        case 2:
-                            buf = buff("Create new login")
-                            print('-' * buf + ' ' + "Create new login" + ' ' + '-' * buf)
-                            this_account.set_user()
-                        case 3:
-                            break
-
+                this_account.set_user()
             case 2:
                 while True:
                     match(practice_menu.select(this_account.get_username())):
                         case 1:
-                            buf = buff("Addition")
-                            print('-' * buf + ' ' + "Addition" + ' ' + '-' * buf)
+                            buf = buff("Arithmetic")
+                            print('-' * buf + ' ' + "Arithmetic" + ' ' + '-' * buf)
+                            quant, rmin, rmax, operator = starting_interview()
+                            test_bank = generate_test(quant, rmin, rmax, operator)
+                            test_results = drill(test_bank)
+                            this_account.save_test_results(test_results)
                             input("Press Enter to continue\n")
                         case 2:
-                            buf = buff("Subtraction")
-                            print('-' * buf + ' ' + "Subtraction" + ' ' + '-' * buf)
+                            buf = buff("Modulus")
+                            print('-' * buf + ' ' + "Modulus" + ' ' + '-' * buf)
                             input("Press Enter to continue\n")
                         case 3:
-                            buf = buff("Multiplication")
-                            print('-' * buf + ' ' + "Multiplication" + ' ' + '-' * buf)
+                            buf = buff("Binary")
+                            print('-' * buf + ' ' + "Binary" + ' ' + '-' * buf)
                             input("Press Enter to continue\n")
                         case 4:  
-                            buf = buff("Integer Division")
-                            print('-' * buf + ' ' + "Integer Division" + ' ' + '-' * buf)
+                            buf = buff("Unit Circle")
+                            print('-' * buf + ' ' + "Unit Circle" + ' ' + '-' * buf)
                             input("Press Enter to continue\n")
                         case 5:
                             break
@@ -64,6 +56,10 @@ def main():
                         case 1:
                             buf = buff("Tables")
                             print('-' * buf + ' ' + "Tables" + ' ' + '-' * buf)
+                            all_test_results = this_account.load_user_history()
+                            print("All Test Results")
+                            for record in all_test_results:
+                                print(record)
                             input("Press Enter to continue\n")
                         case 2:
                             buf = buff("Graphs")

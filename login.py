@@ -1,4 +1,6 @@
 import menu
+import os
+import json
 
 class Account:
     def __init__(self, username="default", userID = "1234"):
@@ -20,6 +22,37 @@ class Account:
         self.__userID = int(temp_userID)
 
     def get_user(self):
-        return self.__username, self.__userID
+        return self.__username + str(self.__userID)
+    
     def get_username(self):
         return self.__username
+    
+    def save_test_results(self, test_results):
+        # create directory for user records
+        directory = "test_records"
+        os.makedirs(directory, exist_ok = True)
+
+        # create the full pathname for this user
+        file_path = os.path.join(directory, f"{self.get_user()}.json")
+
+        # load existing or start a new history
+        if os.path.exists(file_path):
+            with open(file_path, "r") as f:
+                history = json.load(f)
+        else:
+            history = []
+
+        # tack the new results to the end and save
+        history.extend(test_results)
+        with open(file_path, "w") as f:
+            json.dump(history, f, indent=4)
+
+    def load_user_history(self):
+        file_path = f"test_records/{self.get_user()}.json"
+
+        try:
+            with open(file_path, "r") as f:
+                history = json.load(f)
+                return history
+        except FileNotFoundError:
+            return []
