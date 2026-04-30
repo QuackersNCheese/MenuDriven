@@ -1,6 +1,6 @@
 from menu import Menu, clear, buff
 from login import Account
-from drill import starting_interview, generate_test, drill
+from drill import starting_interview, generate_test, drill, bin_terview, bin_gen_test, bin_drill
 
 def main():
     # Default user account
@@ -40,6 +40,10 @@ def main():
                         case 2:
                             buf = buff("Binary")
                             print('-' * buf + ' ' + "Binary" + ' ' + '-' * buf)
+                            quantity, bits = bin_terview()
+                            bin_test_bank = bin_gen_test(quantity, bits)
+                            test_results = bin_drill(bin_test_bank, bits)
+                            this_account.save_test_results(test_results)
                             input("Press Enter to continue\n")
                         case 3:  
                             buf = buff("Unit Circle")
@@ -56,7 +60,7 @@ def main():
                             print('-' * buf + ' ' + "Tables" + ' ' + '-' * buf)
                             all_test_results = this_account.load_user_history()
                             print("All Test Results")
-                            print("op1 op2 operator is_correct dt")
+                            print("op1 op2 operator is_correct dt time")
                             for record in all_test_results:
                                 print(record)
                             input("Press Enter to continue\n")
