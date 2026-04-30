@@ -10,3 +10,7 @@ If you want to down load it, you can clone it. If you want to make a copy of it 
 
 My goal is to keep posting my thoughts, development, and good code snippets here regularly as I go. 
 
+## How to run
+So far I've only used standard Python modules.
+- download main.py, menu.py, login.py, and drill.py
+- on the command line type: python3 main.py

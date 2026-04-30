@@ -51,8 +51,8 @@ def starting_interview():
             print(e)
     while True:
         try:
-            erator = input("what is the operation that you would like to practice? (+, -, *, //, mixed: ~) ")
-            if erator not in ['+', '-', '*', '//', '~']:
+            erator = input("what is the operation that you would like to practice? (+, -, *, //, %, mixed: ~) ")
+            if erator not in ['+', '-', '*', '//', '%', '~']:
                 raise ValueError
             break
         except ValueError:
@@ -67,12 +67,12 @@ def generate_test(quantity, range_min, range_max, iterator):
     test_bank = []
     for i in range(quantity):
         if iterator == "~":
-            operator = random.choice(['+', '-', '*', '//'])
+            operator = random.choice(['+', '-', '*', '//', '%'])
         else:
             operator = iterator
         op1 = random.randint(range_min, range_max)
         op2 = random.randint(range_min, range_max)
-        while operator == '//' and (op2 == 0 or op1 % op2 != 0):
+        while operator == '//' and (op2 == 0 or op1 % op2 != 0) or '%' and (op1 < 0 or op2 <=1):
             op1 = random.randint(range_min, range_max)
             op2 = random.randint(range_min, range_max)
         test_bank.append((op1, op2, operator))

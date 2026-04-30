@@ -5,12 +5,14 @@ from drill import starting_interview, generate_test, drill
 def main():
     # Default user account
     this_account = Account()
+    clear()
+    print("*** You're doing drills! ***")
     this_account.set_user()
 
     # Create menu lists
     MAIN = ["Change Login", "Practice Mode", "Perfomance Analysis", "Quit"]
     LOGIN = ("Sign In", "New Account", "back to Main Menu")
-    PRACTICE = ("Arithmetic", "Modulus", "Binary", "Unit Circle", "back to Main Menu")
+    PRACTICE = ("Arithmetic", "Binary", "Unit Circle", "back to Main Menu")
     PERFORMANCE = ("Tables", "Graphs", "back to Main Menu")
 
     # Create menus
@@ -36,18 +38,14 @@ def main():
                             this_account.save_test_results(test_results)
                             input("Press Enter to continue\n")
                         case 2:
-                            buf = buff("Modulus")
-                            print('-' * buf + ' ' + "Modulus" + ' ' + '-' * buf)
-                            input("Press Enter to continue\n")
-                        case 3:
                             buf = buff("Binary")
                             print('-' * buf + ' ' + "Binary" + ' ' + '-' * buf)
                             input("Press Enter to continue\n")
-                        case 4:  
+                        case 3:  
                             buf = buff("Unit Circle")
                             print('-' * buf + ' ' + "Unit Circle" + ' ' + '-' * buf)
                             input("Press Enter to continue\n")
-                        case 5:
+                        case 4:
                             break
                 
             case 3: 
@@ -58,6 +56,7 @@ def main():
                             print('-' * buf + ' ' + "Tables" + ' ' + '-' * buf)
                             all_test_results = this_account.load_user_history()
                             print("All Test Results")
+                            print("op1 op2 operator is_correct dt")
                             for record in all_test_results:
                                 print(record)
                             input("Press Enter to continue\n")
