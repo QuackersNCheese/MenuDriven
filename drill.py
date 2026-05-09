@@ -183,6 +183,7 @@ def bin_drill(test_bank, bits):
     print(f"That's {correct/total*100:.2f}% at a rate of {t_total/total:.2f} seconds per question.")
     return results
 
+
 def main():
     ## Testing Arithmetic
     # quant, rmin, rmax, operator = starting_interview()
