@@ -85,28 +85,22 @@ def generate_circle_test(quantity, difficulty, function_select, rad_deg):
                 angle = random.choice(['-2\u03c0', '-11\u03c0/6', '-7\u03c0/4', '-5\u03c0/3', '-3\u03c0/2', '-4\u03c0/3', '-5\u03c0/4', '-7\u03c0/6', '-\u03c0', '-5\u03c0/6', '-3\u03c0/4', '-2\u03c0/3', '-\u03c0/2', '-\u03c0/3', '-\u03c0/4', '-\u03c0/6', '0', '\u03c0/6', '\u03c0/4', '\u03c0/3', '\u03c0/2', '2\u03c0/3', '3\u03c0/4', '5\u03c0/6', '\u03c0', '7\u03c0/6', '5\u03c0/4', '4\u03c0/3', '3\u03c0/2', '5\u03c0/3', '7\u03c0/4', '11\u03c0/6', '2\u03c0'])
         rad_to_degree = { '-2\u03c0': '-360\u00b0', '-11\u03c0/6': '-330\u00b0', '-7\u03c0/4': '-315\u00b0', '-5\u03c0/3': '-300\u00b0', '-3\u03c0/2': '-270\u00b0', '-4\u03c0/3': '-240\u00b0', '-5\u03c0/4': '-225\u00b0', '-7\u03c0/6': '-210\u00b0', '-\u03c0': '-180\u00b0', '-5\u03c0/6': '-150\u00b0', '-3\u03c0/4': '-135\u00b0', '-2\u03c0/3': '-120\u00b0', '-\u03c0/2': '-90\u00b0', '-\u03c0/3': '-60\u00b0', '-\u03c0/4': '-45\u00b0', '-\u03c0/6': '-30\u00b0', '0': '0\u00b0', '\u03c0/6': '30\u00b0', '\u03c0/4': '45\u00b0', '\u03c0/3': '60\u00b0', '\u03c0/2': '90\u00b0', '2\u03c0/3': '120\u00b0', '3\u03c0/4': '135\u00b0', '5\u03c0/6': '150\u00b0', '\u03c0': '180\u00b0', '7\u03c0/6': '210\u00b0', '5\u03c0/4': '225\u00b0', '4\u03c0/3': '240\u00b0', '3\u03c0/2': '270\u00b0', '5\u03c0/3': '300\u00b0', '7\u03c0/4': '315\u00b0', '11\u03c0/6': '330\u00b0', '2\u03c0': '360\u00b0'}
         degree = rad_to_degree[angle]
+        ang = angle if rad_deg == 1 else degree
         match(op_num):
             case 1:
-                print(f"sin({angle if rad_deg == 1 else degree}) =", sin[angle])
+                test_bank.append((ang, sin[angle], 'sin'))
             case 2:
-                print(f"cos({angle if rad_deg == 1 else degree}) =", cos[angle])
+                test_bank.append((ang, cos[angle], 'cos'))
             case 3:
-                print(f"tan({angle if rad_deg == 1 else degree}) =", tan[angle])
+                test_bank.append((ang, tan[angle], 'tan'))
             case 4:
-                print(f"csc({angle if rad_deg == 1 else degree}) =", csc[angle])
+                test_bank.append((ang, csc[angle], 'csc'))
             case 5:
-                print(f"sec({angle if rad_deg == 1 else degree}) =", sec[angle])
+                test_bank.append((ang, sec[angle], 'sec'))
             case 6:
-                print(f"cot({angle if rad_deg == 1 else degree}) =", cot[angle])
+                test_bank.append((ang, cot[angle], 'cot'))
 
     return test_bank
-    #     op1 = random.randint(range_min, range_max)
-    #     op2 = random.randint(range_min, range_max)
-    #     while operator == '//' and (op2 == 0 or op1 % op2 != 0) or '%' and (op1 < 0 or op2 <=1):
-    #         op1 = random.randint(range_min, range_max)
-    #         op2 = random.randint(range_min, range_max)
-    #     test_bank.append((op1, op2, operator))
-    # return test_bank
 
 def main():
     ## Testing Arithmetic
@@ -130,7 +124,7 @@ def main():
     clear()
     #quant, diff, select, rad = circle_interview()
     #print(quant, diff, select, rad)
-    print(generate_circle_test(20, 3, 6, 1))
+    print(generate_circle_test(20, 1, 2, 2))
 
 
 if __name__ == "__main__":
